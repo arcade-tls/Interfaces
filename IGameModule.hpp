@@ -4,9 +4,9 @@
 
 class GraphicsApi;
 
-class IGame {
+class IGameModule {
 public:
-    virtual ~IGame() = default;
+    virtual ~IGameModule() = default;
 
     virtual std::string &getName() = 0;
     virtual void update(GraphicsApi *api) = 0;

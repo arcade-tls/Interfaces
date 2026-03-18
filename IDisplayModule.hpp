@@ -3,9 +3,9 @@
 #include <string>
 #include "Types.hpp"
 
-class GraphicsApi {
+class IDisplayModule {
 public:
-    virtual ~GraphicsApi() = default;
+    virtual ~IDisplayModule() = default;
 
     virtual void init() = 0;
 
