@@ -37,5 +37,5 @@ class IDisplayModule {
         virtual void drawRectOutline(
             GlobalPosition pos, Size size, Color fillColor, Color outlineColor, float outlineThickness) = 0;
 
-        virtual void loadRessources(const std::vector<Resource>& ressources) = 0;
+        virtual void loadResources(const std::vector<Resource>& resources) = 0;
 };

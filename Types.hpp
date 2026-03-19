@@ -151,11 +151,11 @@ enum KeyboardCode {
     CtrlLeft,
     Shift,
     F11,
-	Echap,
+	Escape,
     None
 };
 
-enum class RessourceType {
+enum class ResourceType {
 	Texture,
 	Font,
 	Sound,
@@ -163,5 +163,5 @@ enum class RessourceType {
 
 struct Resource {
 	std::string path;
-	RessourceType type;
+	ResourceType type;
 };
