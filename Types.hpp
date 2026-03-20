@@ -57,6 +57,22 @@ struct Color {
 	uint8_t b;
 	uint8_t a;
 
+    static Color red() {
+        return {255, 0, 0, 255};
+    }
+
+    static Color blue() {
+        return {0, 0, 255, 255};
+    }
+
+    static Color white() {
+        return {255, 255, 255, 255};
+    }
+
+    static Color green() {
+        return {0, 255, 0, 255};
+    }
+
 	rayflect(value, {
 		value->member<uint8_t>("r");
 		value->member<uint8_t>("g");
