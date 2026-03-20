@@ -184,6 +184,9 @@ static StructDef *def() { \
     return name; \
 }
 
+#define fields(...) rayflect(value, __VA_ARGS__)
+#define field(type, name) value->member<type>(name);
+
 template<typename T>
 concept HasDef = requires() {
     { T::def() } -> std::same_as<StructDef *>;
