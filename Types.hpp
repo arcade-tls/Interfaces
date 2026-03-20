@@ -165,9 +165,12 @@ enum KeyboardCode {
     ArrowLeft,
     Space,
     CtrlLeft,
+	AltLeft,
+	Backspace,
     Shift,
     F11,
 	Escape,
+	Enter,
     None
 };
 
