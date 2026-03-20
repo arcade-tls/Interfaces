@@ -164,4 +164,18 @@ enum class ResourceType {
 struct Resource {
 	std::string path;
 	ResourceType type;
+
+    static Resource texture(const std::string &path) {
+        return {
+            .path = path,
+            .type = ResourceType::Texture
+        };
+    }
+
+    static Resource font(const std::string &path) {
+        return {
+            .path = path,
+            .type = ResourceType::Font
+        };
+    }
 };
