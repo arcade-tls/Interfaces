@@ -195,3 +195,8 @@ struct Resource {
         };
     }
 };
+
+enum LibType {
+    GAME = 0,
+    GRAPHIC = 1
+};
