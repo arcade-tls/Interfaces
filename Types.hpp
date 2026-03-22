@@ -4,58 +4,70 @@
 
 #include "Rayflect.hpp"
 
-struct Size {
-	float width;
-	float height;
+enum class CoreActionType {
+    None,
+    SwitchGame,
+    SwitchGraphics,
+    Quit,
+};
 
-	rayflect(value, {
-		value->member<float>("width");
-		value->member<float>("height");
-	})
+struct CoreAction {
+    CoreActionType type = CoreActionType::None;
+    std::string target;
+};
+
+struct Size {
+    float width;
+    float height;
+
+    rayflect(value, {
+             value->member<float>("width");
+             value->member<float>("height");
+             })
 };
 
 struct USize {
-	uint32_t width;
-	uint32_t height;
+    uint32_t width;
+    uint32_t height;
 
-	rayflect(value, {
-		value->member<uint32_t>("width");
-		value->member<uint32_t>("height");
-	})
+    rayflect(value, {
+             value->member<uint32_t>("width");
+             value->member<uint32_t>("height");
+             })
 };
 
 using Resolution = USize;
 using ResourceIndex = uint16_t;
 
 struct Vec2 {
-	float x;
-	float y;
+    float x;
+    float y;
 };
 
 struct IVec2 {
-	int x;
-	int y;
+    int x;
+    int y;
 };
 
 struct Vec2Reflect {
-	rayflect(value, {
-		value->member<float>("x");
-		value->member<float>("y");
-	})
+    rayflect(value, {
+             value->member<float>("x");
+             value->member<float>("y");
+             })
 };
 
 struct IVec2Reflect {
-	rayflect(value, {
-		value->member<int>("x");
-		value->member<int>("y");
-	})
+    rayflect(value, {
+             value->member<int>("x");
+             value->member<int>("y");
+             })
 };
 
 struct Color {
-	uint8_t r;
-	uint8_t g;
-	uint8_t b;
-	uint8_t a;
+    uint8_t r;
+    uint8_t g;
+    uint8_t b;
+    uint8_t a;
 
     static Color red() {
         return {255, 0, 0, 255};
@@ -73,63 +85,65 @@ struct Color {
         return {0, 255, 0, 255};
     }
 
-	rayflect(value, {
-		value->member<uint8_t>("r");
-		value->member<uint8_t>("g");
-		value->member<uint8_t>("b");
-		value->member<uint8_t>("a");
-	})
+    static Color beige() {
+        return {255, 172, 104, 255};
+    }
+
+    rayflect(value, {
+             value->member<uint8_t>("r");
+             value->member<uint8_t>("g");
+             value->member<uint8_t>("b");
+             value->member<uint8_t>("a");
+             })
 };
 
 struct Node {
-	Color backgroundColor;
-	Color borderColor;
-	float borderWidth;
+    Color backgroundColor;
+    Color borderColor;
+    float borderWidth;
 };
 
 struct GlobalPosition : Vec2Reflect {
-	float x = 0.f;
-	float y = 0.f;
+    float x = 0.f;
+    float y = 0.f;
 
-	GlobalPosition() = default;
-	GlobalPosition(const float x_value, const float y_value) : x(x_value), y(y_value) {
-	}
+    GlobalPosition() = default;
+    GlobalPosition(const float x_value, const float y_value) : x(x_value), y(y_value) {}
 };
 
 struct Velocity : Vec2Reflect {
-	float x = 0.f;
-	float y = 0.f;
+    float x = 0.f;
+    float y = 0.f;
 
-	Velocity() = default;
-	Velocity(const float x_value, const float y_value) : x(x_value), y(y_value) {
-	}
+    Velocity() = default;
+    Velocity(const float x_value, const float y_value) : x(x_value), y(y_value) {}
 };
 
 struct FontHandle {
-	uint32_t handle;
+    uint32_t handle;
 };
 
 struct SpriteRect {
-	unsigned int left;
-	unsigned int top;
-	unsigned int width;
-	unsigned int height;
+    unsigned int left;
+    unsigned int top;
+    unsigned int width;
+    unsigned int height;
 };
 
 struct Sprite {
-	ResourceIndex texture;
-	Vec2 scale;
-	SpriteRect rect;
+    ResourceIndex texture;
+    Vec2 scale;
+    SpriteRect rect;
 
-	rayflect(value, {
-		value->member<uint16_t>("texture");
-		value->member<float>("scale_x");
-		value->member<float>("scale_y");
-		value->member<unsigned int>("rect_left");
-		value->member<unsigned int>("rect_top");
-		value->member<unsigned int>("rect_width");
-		value->member<unsigned int>("rect_height");
-	})
+    rayflect(value, {
+             value->member<uint16_t>("texture");
+             value->member<float>("scale_x");
+             value->member<float>("scale_y");
+             value->member<unsigned int>("rect_left");
+             value->member<unsigned int>("rect_top");
+             value->member<unsigned int>("rect_width");
+             value->member<unsigned int>("rect_height");
+             })
 };
 
 enum KeyboardCode {
@@ -165,33 +179,33 @@ enum KeyboardCode {
     ArrowLeft,
     Space,
     CtrlLeft,
-	AltLeft,
-	Backspace,
+    AltLeft,
+    Backspace,
     Shift,
     F11,
-	Escape,
-	Enter,
+    Escape,
+    Enter,
     None
 };
 
 enum class ResourceType {
-	Texture,
-	Font,
-	Sound,
+    Texture,
+    Font,
+    Sound,
 };
 
 struct Resource {
-	std::string path;
-	ResourceType type;
+    std::string path;
+    ResourceType type;
 
-    static Resource texture(const std::string &path) {
+    static Resource texture(const std::string& path) {
         return {
             .path = path,
             .type = ResourceType::Texture
         };
     }
 
-    static Resource font(const std::string &path) {
+    static Resource font(const std::string& path) {
         return {
             .path = path,
             .type = ResourceType::Font
