@@ -24,7 +24,8 @@ public:
 
     virtual void drawSprite(GlobalPosition pos, const Sprite& spr) = 0;
 
-    virtual void drawText(GlobalPosition pos, ResourceIndex handle, const char* str, Color color) = 0;
+    virtual void drawText(GlobalPosition pos, ResourceIndex handle, const char* str, Color color, uint32_t fontSize)
+        = 0;
 
     [[nodiscard]] virtual IVec2 getMousePosition() const = 0;
 
